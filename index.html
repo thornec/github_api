@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>GitHub API Access - Conor Thorne</h1>
+    <button id = "btnRepos">Repos</button>
+
+    <div id = "divResult">
+
+    </div>
+
+    <script>  
+        const btnRepos = document.getElementById("btnRepos");
+        const divResult = document.getElementById("divResult");
+
+        btnRepos.addEventListener("click", getRepos);
+
+        /* Async Function that will be called when btnRepos is Clicked */ 
+        async function getRepos(){
+            /* Use Fetch to call API */
+            const url = "https://api.github.com/search/repositories?q=stars:>100000"; //search repositories w/ stars > 100000
+            const response = await fetch(url);
+            const result = await response.json();
+
+            //Display Results
+            result.items.forEach(i=>{
+                const anchor = document.createElement("a"); //Anchor to hold link
+                anchor.href = i.html_url;   //URL
+                anchor.textContent = i.full_name;    // Constant to hold Name
+
+                divResult.appendChild(anchor);
+                divResult.appendChild(document.createElement("br")); //Bullet Points
+
+            })
+        }
+        
+
+    </script>
+</body>
+</html>
