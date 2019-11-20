@@ -62,25 +62,37 @@
             const commitsEndpoint = "/repos/facebook/react/commits?simple=yes&per_page=100&page=1";
             const commitsURL = githubAPI+commitsEndpoint;
             
+            /* Code to get link page */
+           // const link = response.headers.get("link");
+            //link.split(",");    // Splits first and last pages into array
 
-            res=requests.get(commitsUrl,headers={"Authorization": git_token})
-            repos=res.json()
-            while 'next' in res.links.keys():
-                res=requests.get(res.links['next']['url'],headers={"Authorization": git_token})
-                repos.extend(res.json())
-                
-               
-           fetch(commitsURL)
-            .then(response => response.json())
+            const octokit = new Octokit();
+
+
+            octokit
+            .paginate("GET /repos/:owner/:repo/commits",{
+                owner:"facebook",
+                repo:"react"
+            })
             .then(commits => {
                 for (var i = 0; i < commits.length; i++) {
-                    if (!names.includes(commits[i].commit.author.name)){  
+                    if (!names.includes(commits[i].commit.author.   name)){  
                         names.push(commits[i].commit.author.name);
                     }
                 }
-                console.log(names.join("\n"));
+            console.log(names.join("\n"));
             });
-    
+                       
+        }
+
+        function nextPage(commitsURL, page){
+            var string = "&page="
+            var res = string.concat(page);
+
+            console.log(commitsURL + "commmits url");
+            var replacement = commitsURL.replace("&page=1", res);
+            console.log(replacement);
+            return replacement;
         }
 
 
