@@ -16,7 +16,6 @@
     <div id = "divResult">
 
     </div>
-
     <script>  
         const btnRepos = document.getElementById("btnRepos");
         const btnIssues = document.getElementById("btnIssues");
@@ -59,30 +58,41 @@
 
             /* Compute Query URL */
             const githubAPI = "https://api.github.com";
-            const commitsEndpoint = "/repos/facebook/react/commits?simple=yes&per_page=100&page=1";
+            const commitsEndpoint = "/repos/facebook/react/contributors?simple=yes&per_page=100&page=1";
+                        const commitsEndpoint2 = "/repos/facebook/react/commits?simple=yes&per_page=100&page=2";
+
             const commitsURL = githubAPI+commitsEndpoint;
+            const commitsURL2 = githubAPI + commitsEndpoint2;
             
             /* Code to get link page */
-           // const link = response.headers.get("link");
-            //link.split(",");    // Splits first and last pages into array
-
-            const octokit = new Octokit();
-
-
-            octokit
-            .paginate("GET /repos/:owner/:repo/commits",{
-                owner:"facebook",
-                repo:"react"
-            })
-            .then(commits => {
-                for (var i = 0; i < commits.length; i++) {
-                    if (!names.includes(commits[i].commit.author.   name)){  
-                        names.push(commits[i].commit.author.name);
+                var page_number=1
+                fetch(commitsURL)
+                .then(response => response.json())
+                .then(commits => {
+                    for (var i = 0; i < commits.length; i++) {
+                        if (!names.includes(commits[i].commit.author.   name)){  
+                            names.push(commits[i].commit.author.name);
+                            console.log(commits[i].commit.author.name + i);
+                        }
                     }
-                }
-            console.log(names.join("\n"));
-            });
-                       
+                    //console.log(names.join("\n" + ))
+                    page_number++;
+                });
+
+                nextPage(commitsURL, page_number);
+
+                fetch(commitsURL2)
+                .then(response => response.json())
+                .then(commits => {
+                    for (var i = 0; i < commits.length; i++) {
+                        if (!names.includes(commits[i].commit.author.   name)){  
+                            names.push(commits[i].commit.author.name);
+                            console.log(commits[i].commit.author.name + i);
+                        }
+                    }
+                    //console.log(names.join("\n" + ));
+                });
+              
         }
 
         function nextPage(commitsURL, page){
