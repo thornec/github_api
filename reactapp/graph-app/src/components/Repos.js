@@ -73,11 +73,6 @@ function repos(){
 
   return (
     <div>
-      <h1>Conor's Website</h1>
-
-      <div className='navbar'>
-        GitHub API Search Profiles
-      </div>
 
       <div className='search'>
         <Form onSubmit={handleSubmit}>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Form, FormButton, Card, Image, Icon } from 'semantic-ui-react';
 
-function App(){
+function user(){
 
   /* Create States to store data from GitHub API */
   
@@ -71,11 +71,7 @@ function App(){
 
   return (
     <div>
-      <h1>Conor's Website</h1>
 
-      <div className='navbar'>
-        GitHub API Search Profiles
-      </div>
 
       <div className='search'>
         <Form onSubmit={handleSubmit}>
@@ -126,4 +122,4 @@ function App(){
 
 }
 
-export default App;
+export default user;

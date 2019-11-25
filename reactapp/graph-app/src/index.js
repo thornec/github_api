@@ -1,12 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import Repos from './Repos';
+import App from './components/App';
+import { render } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 
-ReactDOM.render(
-  //<App />,
-  <Repos />,
-  document.getElementById('root')
-);
+
+render((
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+), document.getElementById('root'));
