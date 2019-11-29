@@ -23,7 +23,11 @@ const Header = () => (
         User
         </Link>
     </button>
-
+    <button class="ui button">
+        <Link to='/graph'>
+        Graph
+        </Link>
+    </button>
   </header>
   </div>
 )

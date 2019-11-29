@@ -67,14 +67,46 @@ function user(){
     })
 
   }
+  const githubAPI = "https://api.github.com";
+  const commitsEndpoint = "/repos/facebook/react/commits?simple=yes&per_page=100&page=1";
+  var commitsURL = githubAPI+commitsEndpoint;
+  var names =[];
+  
+  /* Async Function to search all commiters from an entire year of a repo */
+  async function getCommits(){
+    
+    /* Compute Query URL */
+    const githubAPI = "https://api.github.com";
+    const commitsEndpoint = "/repos/facebook/react/commits?simple=yes&per_page=100&page=1";
+
+    var commitsURL = githubAPI+commitsEndpoint;
+
+    /* Array to store contributors */
+    var names = [];
+
+    /* Code to get link page */
+    fetch(commitsURL, names)
+        .then(response => response.json())
+        .then(commits => {
+            for (var i = 0; i < commits.length; i++) {
+                if (!names.includes(commits[i].commit.author.name)){  
+                    names.push(commits[i].commit.author.name);
+                    console.log(commits[i].commit.author.name + i);
+                    
+                }
+            }
+         
+    });
+  }
 
 
   return (
     <div>
+    
 
-
+    getCommits();
       <div className='search'>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} >
           <Form.Group>
             <Form.Input placeholder="GitHub Username" name="github user" onChange={handleSearch}>
 

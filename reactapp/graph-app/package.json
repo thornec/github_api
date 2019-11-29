@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3": "^5.14.2",
     "mobx": "^5.15.0",
     "mobx-react-lite": "^1.5.1",
     "react": "^16.12.0",
