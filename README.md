@@ -14,6 +14,11 @@ Below is a video demonstration of how the webpage works and a read me on how to 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/LixstKccpN0/0.jpg)](https://www.youtube.com/watch?v=LixstKccpN0)
 
 https://www.youtube.com/watch?v=LixstKccpN0
+
+To launch the app yourself just change your directory to
+cd../github_api/reactapp/graph-app
+npm start
+
 <br />
 # Final Thoughts
 It being my first time using most of these languages, interacting with an API and libraries I found it very difficult but I am proud of what I have achieved and I have learned a great deal. Stephen told us to push ourselves and that reaching for a more intriguing project and not being able to finish it was better than doing an easy project and I feel like I have tried to do this.
